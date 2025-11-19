@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-effect:hover {
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-pink-50 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full text-center fade-in">
+        <!-- 标题区域 -->
+        <div class="mb-8 bounce-in">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">the useless web</h1>
+            <p class="text-gray-600">bored? click the pink button below to discover intresting website!</p>
+        </div>
+        
+        <!-- 提示文字区域 -->
+        <div class="mb-6 fade-in" style="animation-delay: 0.3s;">
+            <span class="text-2xl font-semibold text-pink-600 bg-pink-50 px-4 py-2 rounded-full border border-pink-200">
+                contact:pashaswallowtail@outlook.com
+            </span>
+        </div>
+        
+        <!-- 主按钮区域 -->
+        <div class="relative mb-8 fade-in" style="animation-delay: 0.6s;">
+            <button id="randomButton" class="bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold py-4 px-8 rounded-2xl glow-effect pulse text-lg">
+                <i class="fas fa-shuffle mr-2"></i>
+                Random websites
+            </button>
+            
+            <!-- 装饰元素 -->
+            <div class="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-ping"></div>
+            <div class="absolute -bottom-2 -left-2 w-6 h-6 bg-purple-400 rounded-full opacity-70"></div>
+        </div>
+        
+        <!-- 网站计数器 -->
+        <div class="bg-white rounded-xl p-4 shadow-sm mb-6 fade-in" style="animation-delay: 0.9s;">
+            <div class="flex justify-between items-center">
+                <div class="text-left">
+                    <p class="text-sm text-gray-500">Included website</p>
+                    <p id="siteCount" class="text-xl font-bold text-gray-800">12</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500">Jump today</p>
+                    <p id="todayCount" class="text-xl font-bold text-gray-800">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 加载动画 -->
+        <div id="loading" class="hidden mb-6">
+            <div class="flex justify-center items-center space-x-2">
+                        <div class="w-3 h-3 bg-pink-500 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
+                        <div class="w-3 h-3 bg-pink-500 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
+                        <div class="w-3 h-3 bg-pink-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+                    </div>
+                    <p class="text-gray-600 mt-2">opening website...</p>
+                </div>
+                
+                <!-- 说明区域 -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-sm fade-in" style="animation-delay: 1.2s;">
+                    <h3 class="font-semibold text-gray-700 mb-2">Instructions for use</h3>
+                    <ul class="text-sm text-gray-600 text-left space-y-1">
+                        <li class="flex items-start">
+                            <i class="fas fa-circle text-pink-500 text-xs mt-1 mr-2"></i>
+                    <span>Click the pink button to jump to the included website randomly.</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-circle text-pink-500 text-xs mt-1 mr-2"></i>
+                    <span>Every click will go to a different website.</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-circle text-pink-500 text-xs mt-1 mr-2"></i>
+                    <span>The websites will be updated regularly,contact me if you want to add some websites.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // List of websites
+        const websites = [
+            "https://www.sketchfab.com",
+            "https://www.bellwoods.xyz",
+            "https://slowroads.io",
+            "https://goldfishies.com",
+            "https://www.hammyhome.com",
+            "https://color-selector.pagelet.host",
+            "https://blobmixer.14islands.com",
+            "https://pranx.com/windows-xp-simulator/",
+            "https://www.photopea.com",
+            "https://www.pointerpointer.com",
+            "https://xp.quenq.com",
+            "https://www.randostreetview.com",
+            "https://spendbillmoney.com",
+            "https://papertoilet.com",
+            "https://weavesilk.com",
+            "https://aidn.jp/mikutap/",
+            "https://rainymood.com",
+            "https://rotatingsandwiches.com",
+            "https://cat-bounce.com",
+            "https://hackertyper.com",
+            "https://lingojam.com",
+            "https://smashthewalls.com",
+            "https://yesnoif.com",
+            "https://trashloop.com",
+            "https://greatbignothing.com",
+            "https://blankwindows.com",
+            "https://larsberg.github.io/2018_nov_sketches/1002_gltf/index.html",
+            "https://larsberg.github.io/_lsr/2017/20161114_rollers/index.html",
+            "https://codepen.io/yuanchuan/full/wZJqNK",
+            "https://ykob.github.io/sketch-threejs/sketch/metal_cube.html",
+            "https://neal.fun/rocks/",
+            "https://neal.fun/printing-money/",
+            "https://neal.fun/design-the-next-iphone/",
+            "https://www.macos-web.app",
+            "https://98.js.org",
+            "https://tjy-gitnub.github.io/win12/desktop.html",
+            "https://windows96.net",
+            "https://flockmod.com",
+            "https://drawing.garden",
+            "httos://memory.toys",
+            "https://jigsawplanet.com",
+            "https://www.airpano.org.cn",
+            "https://tree.fm",
+            "https://biodigital.com",
+            "https://www.merakesh.com/online-html-viewer",
+            "https://desmos.com",
+            "https://anumberfromtheghost.com",
+            "https://gallerix.asia",
+            "https://theuselessweb.com",
+            "https://madebyevan.com/webgl-water/",
+            "https://pestgame.com",
+            "https://demo.marpi.pl/biomes/",
+            "https://toolwa.com/firework/",
+            "https://stars.chromeexperiments.com",
+            
+        ];
+        
+        // opened website records
+        let visitedWebsites = JSON.parse(localStorage.getItem('visitedWebsites')) || [];
+        let todayCount = parseInt(localStorage.getItem('todayCount')) || 0;
+        
+        // DOM 元素
+        const randomButton = document.getElementById('randomButton');
+        const loading = document.getElementById('loading');
+        const siteCount = document.getElementById('siteCount');
+        const todayCountElement = document.getElementById('todayCount');
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            siteCount.textContent = websites.length;
+            todayCountElement.textContent = todayCount;
+            
+            // 检查是否需要重置今日计数
+            const lastVisitDate = localStorage.getItem('lastVisitDate');
+            const today = new Date().toDateString();
+            
+            if (lastVisitDate !== today) {
+                todayCount = 0;
+                localStorage.setItem('todayCount', todayCount);
+                localStorage.setItem('lastVisitDate', today);
+                todayCountElement.textContent = todayCount;
+            }
+        });
+        
+        // 随机跳转函数
+        function getRandomWebsite() {
+            let availableWebsites = websites.filter(site => !visitedWebsites.includes(site));
+            
+            // If all websites have been visited, reset the record.
+            if (availableWebsites.length === 0) {
+                visitedWebsites = [];
+                availableWebsites = websites;
+            }
+            
+            // 随机选择一个网站
+            const randomIndex = Math.floor(Math.random() * availableWebsites.length);
+            const selectedWebsite = availableWebsites[randomIndex];
+            
+            // 添加到已访问列表
+            visitedWebsites.push(selectedWebsite);
+            localStorage.setItem('visitedWebsites', JSON.stringify(visitedWebsites));
+            
+            return selectedWebsite;
+        }
+        
+        // 按钮点击事件
+        randomButton.addEventListener('click', function() {
+            // 显示加载动画
+            loading.classList.remove('hidden');
+            randomButton.disabled = true;
+            randomButton.classList.remove('pulse');
+            randomButton.classList.add('opacity-70');
+            
+            // 增加今日计数
+            todayCount++;
+            localStorage.setItem('todayCount', todayCount);
+            todayCountElement.textContent = todayCount;
+            
+            // 延迟跳转，让用户看到加载效果
+            setTimeout(function() {
+                const targetWebsite = getRandomWebsite();
+                window.location.href = targetWebsite;
+            }, 1500);
+        });
+        
+        // 添加键盘快捷键支持
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' || event.code === 'Enter') {
+                event.preventDefault();
+                randomButton.click();
+            }
+        });
+        
+        // 添加按钮悬停效果
+        randomButton.addEventListener('mouseenter', function() {
+            if (!randomButton.disabled) {
+                randomButton.classList.add('from-pink-600', 'to-rose-600');
+            randomButton.classList.remove('from-pink-500', 'to-rose-500');
+            }
+        });
+        
+        randomButton.addEventListener('mouseleave', function() {
+            if (!randomButton.disabled) {
+                randomButton.classList.remove('from-pink-600', 'to-rose-600');
+            randomButton.classList.add('from-pink-500', 'to-rose-500');
+            }
+        });
+    </script>
+</body>
+</html>
